@@ -1,8 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 
-export const dynamic = "force-dynamic";
+import { cookies } from "next/headers";
 
 export default async function Home() {
+  const cookieJar = cookies()
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -12,7 +13,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <pre>{JSON.stringify({data, cookieJar}, null, 2)}</pre>
     </main>
   );
 }
