@@ -8,7 +8,7 @@ export default async function Home() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
-  const { data } = await supabase.from("posts").select();
+  const { data } = await supabase.from("posts").select("*, comments(*)");
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
